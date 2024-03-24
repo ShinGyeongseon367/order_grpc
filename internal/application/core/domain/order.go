@@ -24,3 +24,11 @@ func NewOrder(customerID int64, orderItems []OrderItem) Order {
 		OrderItems: orderItems,
 	}
 }
+
+func (o *Order) TotalPrice() float32 {
+	var totalPrice float32
+	for _, val := range o.OrderItems {
+		totalPrice += val.UnitPrice * float32(val.Quantity)
+	}
+	return totalPrice
+}
